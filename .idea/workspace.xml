@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Pretty-Pick:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9cf03d1d-a8e6-42f8-a510-26c13ee91c78" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/AppointmentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/BookingDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/FeedbackDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/ServiceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/AdminDashboardServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/BookingServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/BookingsServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/ContactServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/FeedbackServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/ServiceServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/UserDashboardServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/DatabaseInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/util/DatabaseSeeder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/add_beauty_services.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/update_database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/404.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/AdminDashboardUpdated.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookings.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/error.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/feedbacks.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/my-bookings.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/service-updated.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/404.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/AdminDashboardUpdated.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/add_beauty_services.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/AppointmentDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/BookingDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/FeedbackDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/ServiceDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/model/booking.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/AdminDashboardServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/BookingServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/BookingsServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/ContactServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/FeedbackServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/ServiceServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/UserDashboardServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/update_database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/util/DatabaseInitializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/util/DatabaseSeeder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/lib/jakarta.el-api-5.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/lib/jakarta.servlet.jsp.jstl-3.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-3.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/bookings.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/error.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/feedbacks.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/my-bookings.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service-updated.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/add_beauty_services.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/dao/AppointmentDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/dao/BookingDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/dao/FeedbackDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/dao/ServiceDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/model/booking.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/AdminDashboardServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/BookingServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/BookingsServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/ContactServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/FeedbackServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/ServiceServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlet/UserDashboardServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/update_database.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/util/DatabaseInitializer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/util/DatabaseSeeder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/LogoutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/AdminDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/AdminDashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/UserDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/UserDashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/aboutus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/aboutus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/contactus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contactus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/service.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/service.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/AdminDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/AdminDashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/UserDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/UserDashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/model/appointment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/model/appointment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/model/service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/model/service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/LogoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/LogoutServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/util/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/util/DBConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/aboutus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/aboutus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/contactus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/contactus.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/appointment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/appointment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/service.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/service.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/servlet/LogoutServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlet/LogoutServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/util/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/util/DBConnection.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2vz0nZEsUSTzMtDu17vYdkp9dsn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.signup.jsp.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 11.0.0-M22.executor": "Run",
+    "Tomcat Server.UserDashboard.jsp.executor": "Run",
+    "Tomcat Server.signup.jsp.executor": "Run",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Dell/eclipse-workspace/Pretty-Pick",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.0-M22">
+    <configuration name="signup.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8082/Pretty_Pick_war_exploded/signup.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat 11.0.0-M22" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.0-M22" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Pretty-Pick:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Pretty_Pick_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="369a2877-0b60-4373-9ab5-74168ebc4c06" />
+        <option name="HTTP_PORT" value="8082" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54083" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Pretty-Pick:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="UserDashboard.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 11.0.0-M22" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/UserDashboard.jsp" />
+      <deployment>
+        <artifact name="Pretty-Pick:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Pretty_Pick_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="3d2c2e9c-4241-469d-9ba2-16e886f37e8e" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Pretty-Pick:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="signup.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 11.0.0-M22" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/signup.jsp" />
+      <deployment>
+        <artifact name="Pretty-Pick:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Pretty_Pick_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="9fed08a4-0d13-4262-9043-ca0627eccb59" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Pretty-Pick:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.signup.jsp" />
+        <item itemvalue="Tomcat Server.signup.jsp" />
+        <item itemvalue="Tomcat Server.UserDashboard.jsp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9cf03d1d-a8e6-42f8-a510-26c13ee91c78" name="Changes" comment="" />
+      <created>1745132762826</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745132762826</updated>
+      <workItem from="1745132764103" duration="2774000" />
+      <workItem from="1745148596650" duration="4511000" />
+      <workItem from="1745156165057" duration="19000" />
+      <workItem from="1745156740935" duration="6746000" />
+      <workItem from="1745167965492" duration="1250000" />
+      <workItem from="1745202793163" duration="6208000" />
+      <workItem from="1745214059487" duration="1972000" />
+      <workItem from="1745218082524" duration="2182000" />
+      <workItem from="1745225542537" duration="3334000" />
+      <workItem from="1745233990418" duration="13326000" />
+      <workItem from="1745291381817" duration="2330000" />
+      <workItem from="1745294423972" duration="1291000" />
+      <workItem from="1745571848867" duration="741000" />
+      <workItem from="1745825981234" duration="417000" />
+      <workItem from="1745830133366" duration="2534000" />
+      <workItem from="1746111103946" duration="1836000" />
+      <workItem from="1746251823227" duration="1668000" />
+      <workItem from="1746283595729" duration="1868000" />
+      <workItem from="1746325992901" duration="4832000" />
+      <workItem from="1746340922678" duration="45000" />
+      <workItem from="1746340987406" duration="4713000" />
+      <workItem from="1746348970669" duration="2285000" />
+      <workItem from="1746378648619" duration="1253000" />
+      <workItem from="1746412426705" duration="2718000" />
+      <workItem from="1746416071528" duration="1009000" />
+      <workItem from="1746427743906" duration="8935000" />
+      <workItem from="1746446827344" duration="10202000" />
+      <workItem from="1746501397425" duration="1265000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
