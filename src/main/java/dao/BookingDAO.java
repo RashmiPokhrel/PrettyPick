@@ -232,7 +232,7 @@ public class BookingDAO {
         String query = "SELECT b.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
                       "s.service_Name, s.price, s.duration " +
                       "FROM booking b " +
-                      "JOIN user u ON b.user_id = u.userId " +
+                      "JOIN user u ON b.user_id = u.user_id " +
                       "JOIN service s ON b.service_Id = s.service_Id " +
                       "ORDER BY b.booking_Date DESC, b.booking_Time DESC";
 
@@ -300,7 +300,7 @@ public class BookingDAO {
         String query = "SELECT b.*, s.service_Name, s.price, s.duration, u.name as user_name, u.email as user_email " +
                       "FROM booking b " +
                       "JOIN service s ON b.service_Id = s.service_Id " +
-                      "JOIN user u ON b.user_id = u.userId " +
+                      "JOIN user u ON b.user_id = u.user_id " +
                       "WHERE b.booking_Id = ?";
 
         try (Connection conn = DBConnection.getConnection();

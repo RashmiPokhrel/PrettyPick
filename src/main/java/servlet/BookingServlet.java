@@ -76,7 +76,7 @@ public class BookingServlet extends HttpServlet {
                     try {
                         user user = userDAO.getUserByEmail(userEmail);
                         if (user != null) {
-                            List<Object[]> userBookings = bookingDAO.getDetailedBookingsByUserId(user.getUserId());
+                            List<Object[]> userBookings = bookingDAO.getDetailedBookingsByUserId(user.getUser_id());
                             request.setAttribute("bookings", userBookings);
                             request.getRequestDispatcher("/bookings.jsp").forward(request, response);
                         } else {
@@ -167,7 +167,7 @@ public class BookingServlet extends HttpServlet {
             newBooking.setStatus("Pending");
             newBooking.setNotes(notes);
             newBooking.setDuration(service.getDuration());
-            newBooking.setUser_Id(user.getUserId());
+            newBooking.setUser_Id(user.getUser_id());
             newBooking.setService_Id(serviceId);
 
             // Save to database

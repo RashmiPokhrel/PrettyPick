@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,20 +17,20 @@
             border-radius: 10px;
             box-shadow: var(--box-shadow);
         }
-        
+
         .feedbacks-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
         }
-        
+
         .feedbacks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
-        
+
         .feedback-card {
             background-color: white;
             border-radius: 10px;
@@ -38,11 +38,11 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
-        
+
         .feedback-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .feedback-header {
             display: flex;
             justify-content: space-between;
@@ -51,45 +51,45 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 0.5rem;
         }
-        
+
         .feedback-service {
             font-weight: bold;
             color: var(--primary-color);
         }
-        
+
         .feedback-date {
             font-size: 0.8rem;
             color: var(--gray-color);
         }
-        
+
         .feedback-rating {
             display: flex;
             margin-bottom: 0.5rem;
         }
-        
+
         .star {
             color: gold;
             margin-right: 2px;
         }
-        
+
         .feedback-comments {
             margin-top: 1rem;
             line-height: 1.5;
         }
-        
+
         .feedback-user {
             margin-top: 1rem;
             font-style: italic;
             color: var(--gray-color);
             text-align: right;
         }
-        
+
         .no-feedbacks {
             text-align: center;
             padding: 2rem;
             color: var(--gray-color);
         }
-        
+
         /* Alert Messages */
         .alert {
             padding: 1rem;
@@ -97,7 +97,7 @@
             border-radius: 5px;
             text-align: center;
         }
-        
+
         .alert-success {
             background-color: #d4edda;
             color: #155724;
@@ -106,36 +106,8 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="home.jsp" class="logo">PrettyPick</a>
-                <div class="nav-links">
-                    <a href="home.jsp">Home</a>
-                    <a href="service.jsp">Services</a>
-                    <a href="bookings.jsp">My Bookings</a>
-                    <a href="aboutus.jsp">About Us</a>
-                </div>
-                <div class="auth-buttons">
-                    <%
-                        String email = null;
-                        Cookie[] cookies = request.getCookies();
-                        if (cookies != null) {
-                            for (Cookie cookie : cookies) {
-                                if ("userEmail".equals(cookie.getName())) {
-                                    email = cookie.getValue();
-                                    break;
-                                }
-                            }
-                        }
-                    %>
-                    <a href="#" class="btn btn-outline"><%= email != null ? email : "Guest" %></a>
-                    <a href="logout" class="btn btn-primary">Logout</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Include the common header -->
+    <%@ include file="includes/header.jsp" %>
 
     <!-- Main Content -->
     <main>
@@ -146,14 +118,14 @@
                     <a href="bookings.jsp" class="btn btn-primary">Back to Bookings</a>
                 </c:if>
             </div>
-            
+
             <!-- Alert Messages -->
             <c:if test="${param.submitted == 'true'}">
                 <div class="alert alert-success">
                     Your feedback has been submitted successfully. Thank you!
                 </div>
             </c:if>
-            
+
             <!-- Feedbacks Grid -->
             <c:choose>
                 <c:when test="${not empty feedbacks}">
@@ -222,7 +194,7 @@
             </c:choose>
         </div>
     </main>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">

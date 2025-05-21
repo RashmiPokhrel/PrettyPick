@@ -85,7 +85,7 @@ public class UserDashboardServlet extends HttpServlet {
             }
 
             // Get upcoming bookings for the user
-            List<Object[]> upcomingBookings = bookingDAO.getDetailedBookingsByUserId(user.getUserId());
+            List<Object[]> upcomingBookings = bookingDAO.getDetailedBookingsByUserId(user.getUser_id());
             request.setAttribute("upcomingBookings", upcomingBookings);
 
             // Set user object in request for profile display
@@ -140,7 +140,7 @@ public class UserDashboardServlet extends HttpServlet {
         // Check if email is being changed and if it's already in use
         if (!email.equals(userEmail)) {
             user existingUser = userDAO.getUserByEmail(email);
-            if (existingUser != null && existingUser.getUserId() != currentUser.getUserId()) {
+            if (existingUser != null && existingUser.getUser_id() != currentUser.getUser_id()) {
                 request.setAttribute("profileError", "Email is already in use by another account.");
                 loadDashboard(request, response);
                 return;
@@ -213,7 +213,7 @@ public class UserDashboardServlet extends HttpServlet {
         }
 
         // Verify current password
-        if (!userDAO.verifyPassword(currentUser.getUserId(), currentPassword)) {
+        if (!userDAO.verifyPassword(currentUser.getUser_id(), currentPassword)) {
             request.setAttribute("passwordError", "Current password is incorrect.");
             loadDashboard(request, response);
             return;
@@ -227,7 +227,7 @@ public class UserDashboardServlet extends HttpServlet {
         }
 
         // Update password in database
-        boolean success = userDAO.updateUserPassword(currentUser.getUserId(), newPassword);
+        boolean success = userDAO.updateUserPassword(currentUser.getUser_id(), newPassword);
 
         if (success) {
             // Redirect with success message

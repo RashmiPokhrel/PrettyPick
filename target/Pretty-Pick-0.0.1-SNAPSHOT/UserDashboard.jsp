@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -680,46 +680,8 @@
     </style>
 </head>
 <body>
-<!-- Header -->
-<header>
-    <div class="container">
-        <div class="logo">
-            <h1>PrettyPick</h1>
-        </div>
-        <nav>
-            <input type="checkbox" id="nav-toggle" class="nav-toggle">
-            <label for="nav-toggle" class="nav-toggle-label">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-            <div class="nav-wrapper">
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="services">Service</a></li>
-                    <li><a href="aboutus.jsp">About us</a></li>
-                    <li><a href="contactus.jsp">Contact Us</a></li>
-                </ul>
-                <div class="auth-buttons">
-                    <%
-                        String email = null;
-                        Cookie[] cookies = request.getCookies();
-                        if (cookies != null) {
-                            for (Cookie cookie : cookies) {
-                                if ("userEmail".equals(cookie.getName())) {
-                                    email = cookie.getValue();
-                                    break;
-                                }
-                            }
-                        }
-                    %>
-                    <a href="#" class="btn btn-outline"><%= email != null ? email : "Guest" %></a>
-                    <a href="logout" class="btn btn-primary">Logout</a>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
+<!-- Include the common header -->
+<%@ include file="includes/header.jsp" %>
 
 <!-- Welcome Section -->
 <section id="home" class="welcome-section">

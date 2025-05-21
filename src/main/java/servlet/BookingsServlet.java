@@ -64,7 +64,7 @@ public class BookingsServlet extends HttpServlet {
             }
 
             // Get bookings for the user
-            List<Object[]> bookings = bookingDAO.getDetailedBookingsByUserId(user.getUserId());
+            List<Object[]> bookings = bookingDAO.getDetailedBookingsByUserId(user.getUser_id());
             request.setAttribute("bookings", bookings);
 
             // Forward to the my-bookings JSP

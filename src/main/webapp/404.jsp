@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,25 +19,25 @@
             border-radius: 10px;
             box-shadow: var(--box-shadow);
         }
-        
+
         .error-icon {
             font-size: 5rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
         }
-        
+
         .error-container h1 {
             font-size: 2.5rem;
             color: var(--dark-color);
             margin-bottom: 1rem;
         }
-        
+
         .error-container p {
             font-size: 1.1rem;
             color: var(--gray-color);
             margin-bottom: 2rem;
         }
-        
+
         .error-code {
             font-size: 8rem;
             font-weight: bold;
@@ -44,7 +45,7 @@
             margin-bottom: 1rem;
             line-height: 1;
         }
-        
+
         .btn-container {
             display: flex;
             justify-content: center;
@@ -53,24 +54,8 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="home.jsp" class="logo">PrettyPick</a>
-                <div class="nav-links">
-                    <a href="home.jsp">Home</a>
-                    <a href="service.jsp">Services</a>
-                    <a href="aboutus.jsp">About Us</a>
-                    <a href="contactus.jsp">Contact Us</a>
-                </div>
-                <div class="auth-buttons">
-                    <a href="login.jsp" class="btn btn-outline">Login</a>
-                    <a href="signup.jsp" class="btn btn-primary">Register</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Include the common header -->
+    <%@ include file="includes/header.jsp" %>
 
     <!-- Main Content -->
     <main>
@@ -81,14 +66,14 @@
             </div>
             <h1>Page Not Found</h1>
             <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-            
+
             <div class="btn-container">
                 <a href="javascript:history.back()" class="btn btn-outline">Go Back</a>
                 <a href="home.jsp" class="btn btn-primary">Go to Homepage</a>
             </div>
         </div>
     </main>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">

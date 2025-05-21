@@ -26,7 +26,7 @@ public class AppointmentDAO {
             pstmt.setInt(5, appointment.getService_Id());
 
             int rowsAffected = pstmt.executeUpdate();
-            
+
             if (rowsAffected > 0) {
                 try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
@@ -181,7 +181,7 @@ public class AppointmentDAO {
             return rowsAffected > 0;
         }
     }
-    
+
     // Get count of appointments by status
     public int getAppointmentCountByStatus(String status) throws SQLException {
         String query = "SELECT COUNT(*) FROM appointment WHERE appointment_Status = ?";
@@ -198,7 +198,7 @@ public class AppointmentDAO {
             }
         }
     }
-    
+
     // Get detailed appointments with user and service information
     public List<Object[]> getDetailedAppointments() throws SQLException {
         List<Object[]> detailedAppointments = new ArrayList<>();
@@ -208,11 +208,11 @@ public class AppointmentDAO {
                       "JOIN user u ON a.user_Id = u.user_id " +
                       "JOIN service s ON a.service_Id = s.service_Id " +
                       "ORDER BY a.appointment_Date DESC, a.appointment_Time DESC";
-        
+
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
-            
+
             while (rs.next()) {
                 Object[] appointmentDetails = new Object[10];
                 appointmentDetails[0] = rs.getInt("appointment_Id");
@@ -225,14 +225,129 @@ public class AppointmentDAO {
                 appointmentDetails[7] = rs.getString("user_phone");
                 appointmentDetails[8] = rs.getString("service_Name");
                 appointmentDetails[9] = rs.getString("duration");
-                
+
                 detailedAppointments.add(appointmentDetails);
             }
         }
-        
+
         return detailedAppointments;
     }
-    
+
+    // Get detailed appointments filtered by status
+    public List<Object[]> getDetailedAppointmentsByStatus(String status) throws SQLException {
+        List<Object[]> detailedAppointments = new ArrayList<>();
+        String query = "SELECT a.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM appointment a " +
+                      "JOIN user u ON a.user_Id = u.user_id " +
+                      "JOIN service s ON a.service_Id = s.service_Id " +
+                      "WHERE a.appointment_Status = ? " +
+                      "ORDER BY a.appointment_Date DESC, a.appointment_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, status);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] appointmentDetails = new Object[10];
+                    appointmentDetails[0] = rs.getInt("appointment_Id");
+                    appointmentDetails[1] = rs.getString("appointment_Date");
+                    appointmentDetails[2] = rs.getString("appointment_Time");
+                    appointmentDetails[3] = rs.getString("appointment_Status");
+                    appointmentDetails[4] = rs.getInt("user_Id");
+                    appointmentDetails[5] = rs.getString("user_name");
+                    appointmentDetails[6] = rs.getString("user_email");
+                    appointmentDetails[7] = rs.getString("user_phone");
+                    appointmentDetails[8] = rs.getString("service_Name");
+                    appointmentDetails[9] = rs.getString("duration");
+
+                    detailedAppointments.add(appointmentDetails);
+                }
+            }
+        }
+
+        return detailedAppointments;
+    }
+
+    // Get detailed appointments filtered by date
+    public List<Object[]> getDetailedAppointmentsByDate(String date) throws SQLException {
+        List<Object[]> detailedAppointments = new ArrayList<>();
+        String query = "SELECT a.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM appointment a " +
+                      "JOIN user u ON a.user_Id = u.user_id " +
+                      "JOIN service s ON a.service_Id = s.service_Id " +
+                      "WHERE a.appointment_Date = ? " +
+                      "ORDER BY a.appointment_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, date);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] appointmentDetails = new Object[10];
+                    appointmentDetails[0] = rs.getInt("appointment_Id");
+                    appointmentDetails[1] = rs.getString("appointment_Date");
+                    appointmentDetails[2] = rs.getString("appointment_Time");
+                    appointmentDetails[3] = rs.getString("appointment_Status");
+                    appointmentDetails[4] = rs.getInt("user_Id");
+                    appointmentDetails[5] = rs.getString("user_name");
+                    appointmentDetails[6] = rs.getString("user_email");
+                    appointmentDetails[7] = rs.getString("user_phone");
+                    appointmentDetails[8] = rs.getString("service_Name");
+                    appointmentDetails[9] = rs.getString("duration");
+
+                    detailedAppointments.add(appointmentDetails);
+                }
+            }
+        }
+
+        return detailedAppointments;
+    }
+
+    // Get detailed appointments filtered by both status and date
+    public List<Object[]> getDetailedAppointmentsByStatusAndDate(String status, String date) throws SQLException {
+        List<Object[]> detailedAppointments = new ArrayList<>();
+        String query = "SELECT a.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM appointment a " +
+                      "JOIN user u ON a.user_Id = u.user_id " +
+                      "JOIN service s ON a.service_Id = s.service_Id " +
+                      "WHERE a.appointment_Status = ? AND a.appointment_Date = ? " +
+                      "ORDER BY a.appointment_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, status);
+            pstmt.setString(2, date);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] appointmentDetails = new Object[10];
+                    appointmentDetails[0] = rs.getInt("appointment_Id");
+                    appointmentDetails[1] = rs.getString("appointment_Date");
+                    appointmentDetails[2] = rs.getString("appointment_Time");
+                    appointmentDetails[3] = rs.getString("appointment_Status");
+                    appointmentDetails[4] = rs.getInt("user_Id");
+                    appointmentDetails[5] = rs.getString("user_name");
+                    appointmentDetails[6] = rs.getString("user_email");
+                    appointmentDetails[7] = rs.getString("user_phone");
+                    appointmentDetails[8] = rs.getString("service_Name");
+                    appointmentDetails[9] = rs.getString("duration");
+
+                    detailedAppointments.add(appointmentDetails);
+                }
+            }
+        }
+
+        return detailedAppointments;
+    }
+
     // Get detailed appointments for a specific user
     public List<Object[]> getDetailedAppointmentsByUserId(int userId) throws SQLException {
         List<Object[]> detailedAppointments = new ArrayList<>();
@@ -241,12 +356,12 @@ public class AppointmentDAO {
                       "JOIN service s ON a.service_Id = s.service_Id " +
                       "WHERE a.user_Id = ? " +
                       "ORDER BY a.appointment_Date DESC, a.appointment_Time DESC";
-        
+
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
-            
+
             pstmt.setInt(1, userId);
-            
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Object[] appointmentDetails = new Object[7];
@@ -257,12 +372,12 @@ public class AppointmentDAO {
                     appointmentDetails[4] = rs.getString("service_Name");
                     appointmentDetails[5] = rs.getDouble("price");
                     appointmentDetails[6] = rs.getString("duration");
-                    
+
                     detailedAppointments.add(appointmentDetails);
                 }
             }
         }
-        
+
         return detailedAppointments;
     }
 }

@@ -615,20 +615,8 @@
     </style>
 </head>
 <body>
-<!-- Header -->
-<header>
-    <nav class="navbar">
-        <a href="/" class="logo">PrettyPick</a>
-        <div class="nav-links">
-            <a href="UserDashboard.jsp">Home</a>
-            <a href="services">Services</a>
-            <a href="user-bookings">My Bookings</a>
-            <a href="aboutus.jsp">About Us</a>
-            <a href="contactus.jsp">Contact Us</a>
-            <a href="logout" class="login-btn">Logout</a>
-        </div>
-    </nav>
-</header>
+<!-- Include the common header -->
+<%@ include file="includes/header.jsp" %>
 
 <main>
     <!-- Offer Section (simplified) -->

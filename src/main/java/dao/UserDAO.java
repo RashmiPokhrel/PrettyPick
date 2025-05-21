@@ -54,7 +54,7 @@ public class UserDAO {
                     // Verify the password
                     if (BCrypt.checkpw(password, hashedPassword)) {
                         user user = new user();
-                        user.setUserId(resultSet.getInt("user_id"));
+                        user.setUser_id(resultSet.getInt("user_id"));
                         user.setName(resultSet.getString("name"));
                         user.setEmail(resultSet.getString("email"));
                         user.setPhone(resultSet.getString("phone"));
@@ -79,7 +79,7 @@ public class UserDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     user user = new user();
-                    user.setUserId(resultSet.getInt("user_id"));
+                    user.setUser_id(resultSet.getInt("user_id"));
                     user.setName(resultSet.getString("name"));
                     user.setEmail(resultSet.getString("email"));
                     user.setPhone(resultSet.getString("phone"));
@@ -103,7 +103,7 @@ public class UserDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     user user = new user();
-                    user.setUserId(resultSet.getInt("user_id"));
+                    user.setUser_id(resultSet.getInt("user_id"));
                     user.setName(resultSet.getString("name"));
                     user.setEmail(resultSet.getString("email"));
                     user.setPhone(resultSet.getString("phone"));
@@ -126,13 +126,40 @@ public class UserDAO {
 
             while (resultSet.next()) {
                 user user = new user();
-                user.setUserId(resultSet.getInt("user_id"));
+                user.setUser_id(resultSet.getInt("user_id"));
                 user.setName(resultSet.getString("name"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhone(resultSet.getString("phone"));
                 user.setPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getString("role"));
                 users.add(user);
+            }
+        }
+        return users;
+    }
+
+    // Search users by name or email
+    public List<user> searchUsers(String searchQuery) throws SQLException {
+        List<user> users = new ArrayList<>();
+        String query = "SELECT * FROM user WHERE name LIKE ? OR email LIKE ? ORDER BY name";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            String searchPattern = "%" + searchQuery + "%";
+            statement.setString(1, searchPattern);
+            statement.setString(2, searchPattern);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    user user = new user();
+                    user.setUser_id(resultSet.getInt("user_id"));
+                    user.setName(resultSet.getString("name"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPhone(resultSet.getString("phone"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setRole(resultSet.getString("role"));
+                    users.add(user);
+                }
             }
         }
         return users;
@@ -148,7 +175,7 @@ public class UserDAO {
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPhone());
             statement.setString(4, user.getRole());
-            statement.setInt(5, user.getUserId());
+            statement.setInt(5, user.getUser_id());
 
             int rowsAffected = statement.executeUpdate();
             return rowsAffected > 0;

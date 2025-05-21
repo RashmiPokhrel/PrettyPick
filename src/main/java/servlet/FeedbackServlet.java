@@ -85,7 +85,7 @@ public class FeedbackServlet extends HttpServlet {
                                 request.setAttribute("isAdmin", true);
                             } else {
                                 // User sees only their feedback
-                                List<feedback> userFeedback = feedbackDAO.getFeedbackByUserId(user.getUserId());
+                                List<feedback> userFeedback = feedbackDAO.getFeedbackByUserId(user.getUser_id());
                                 request.setAttribute("feedbacks", userFeedback);
                                 request.setAttribute("isAdmin", false);
                             }
@@ -158,7 +158,7 @@ public class FeedbackServlet extends HttpServlet {
             }
             
             // Create feedback object
-            feedback newFeedback = new feedback(0, rating, comments, null, user.getUserId(), booking.getService_Id());
+            feedback newFeedback = new feedback(0, rating, comments, null, user.getUser_id(), booking.getService_Id());
             
             // Save to database
             boolean success = feedbackDAO.createFeedback(newFeedback);

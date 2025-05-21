@@ -33,4 +33,18 @@
         <session-timeout>30</session-timeout>
     </session-config>
 
+    <!-- Filter Configuration -->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>filter.AuthFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/admin-dashboard/*</url-pattern>
+        <url-pattern>/user-dashboard/*</url-pattern>
+        <url-pattern>/user-bookings</url-pattern>
+        <url-pattern>/feedbacks</url-pattern>
+    </filter-mapping>
+
 </web-app>

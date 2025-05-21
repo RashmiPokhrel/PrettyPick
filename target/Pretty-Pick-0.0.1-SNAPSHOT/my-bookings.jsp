@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -508,38 +508,8 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="home.jsp" class="logo">PrettyPick</a>
-                <div class="nav-links">
-                    <a href="home.jsp">Home</a>
-                    <a href="services">Services</a>
-                    <a href="user-dashboard">Dashboard</a>
-                    <a href="user-bookings" class="active">My Bookings</a>
-                    <a href="aboutus.jsp">About Us</a>
-                    <a href="contactus.jsp">Contact Us</a>
-                </div>
-                <div class="auth-buttons">
-                    <%
-                        String userEmail = null;
-                        Cookie[] cookies = request.getCookies();
-                        if (cookies != null) {
-                            for (Cookie cookie : cookies) {
-                                if ("userEmail".equals(cookie.getName())) {
-                                    userEmail = cookie.getValue();
-                                    break;
-                                }
-                            }
-                        }
-                    %>
-                    <a href="#" class="btn btn-outline"><%= userEmail != null ? userEmail : "Guest" %></a>
-                    <a href="logout" class="btn btn-primary">Logout</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Include the common header -->
+    <%@ include file="includes/header.jsp" %>
 
     <!-- Main Content -->
     <main>
@@ -582,7 +552,7 @@
                                         ${booking[3]}
                                     </div>
                                 </div>
-                                
+
                                 <h3>${booking[4]}</h3>
                                 <div class="booking-details">
                                     <p><i class="far fa-calendar"></i> Date: ${booking[1]}</p>
@@ -629,12 +599,12 @@
                 <form class="modal-form" action="user-bookings" method="post">
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" id="bookingId" name="bookingId">
-                    
+
                     <div class="form-group">
                         <label for="date">New Date:</label>
                         <input type="date" id="date" name="date" required min="<%= java.time.LocalDate.now() %>">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="time">New Time:</label>
                         <select id="time" name="time" required>
@@ -650,7 +620,7 @@
                             <option value="17:00">5:00 PM</option>
                         </select>
                     </div>
-                    
+
                     <button type="submit">Confirm Reschedule</button>
                 </form>
             </div>
@@ -700,7 +670,7 @@
         function openRescheduleModal(bookingId, date, time) {
             document.getElementById('bookingId').value = bookingId;
             document.getElementById('date').value = date;
-            
+
             // Set the time in the select dropdown
             const timeSelect = document.getElementById('time');
             for (let i = 0; i < timeSelect.options.length; i++) {
@@ -709,14 +679,14 @@
                     break;
                 }
             }
-            
+
             document.getElementById('rescheduleModal').style.display = 'block';
         }
-        
+
         function closeRescheduleModal() {
             document.getElementById('rescheduleModal').style.display = 'none';
         }
-        
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('rescheduleModal')) {

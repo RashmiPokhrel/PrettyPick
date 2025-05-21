@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -503,62 +503,8 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="home.jsp" class="logo">PrettyPick</a>
-                <div class="nav-links">
-                    <a href="home.jsp">Home</a>
-                    <a href="services" class="active">Services</a>
-                    <%
-                        String userEmail = null;
-                        String userRole = null;
-                        Cookie[] cookies = request.getCookies();
-                        if (cookies != null) {
-                            for (Cookie cookie : cookies) {
-                                if ("userEmail".equals(cookie.getName())) {
-                                    userEmail = cookie.getValue();
-                                } else if ("userRole".equals(cookie.getName())) {
-                                    userRole = cookie.getValue();
-                                }
-                            }
-                        }
-                        
-                        if (userEmail != null) {
-                            if ("admin".equals(userRole)) {
-                    %>
-                    <a href="admin-dashboard">Dashboard</a>
-                    <%
-                            } else {
-                    %>
-                    <a href="user-dashboard">Dashboard</a>
-                    <a href="bookings">My Bookings</a>
-                    <%
-                            }
-                        }
-                    %>
-                    <a href="aboutus.jsp">About Us</a>
-                    <a href="contactus.jsp">Contact Us</a>
-                </div>
-                <div class="auth-buttons">
-                    <%
-                        if (userEmail != null) {
-                    %>
-                    <a href="#" class="btn btn-outline"><%= userEmail %></a>
-                    <a href="logout" class="btn btn-primary">Logout</a>
-                    <%
-                        } else {
-                    %>
-                    <a href="login.jsp" class="btn btn-outline">Login</a>
-                    <a href="signup.jsp" class="btn btn-primary">Register</a>
-                    <%
-                        }
-                    %>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Include the common header -->
+    <%@ include file="includes/header.jsp" %>
 
     <!-- Main Content -->
     <main>
