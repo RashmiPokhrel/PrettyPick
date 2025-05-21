@@ -226,6 +226,45 @@ public class BookingDAO {
         }
     }
 
+    // Get only pending bookings
+    public List<Object[]> getPendingBookings() throws SQLException {
+        List<Object[]> pendingBookings = new ArrayList<>();
+        String query = "SELECT b.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM booking b " +
+                      "JOIN user u ON b.user_id = u.user_id " +
+                      "JOIN service s ON b.service_Id = s.service_Id " +
+                      "WHERE b.status = 'Pending' " +
+                      "ORDER BY b.booking_Date ASC, b.booking_Time ASC";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] bookingDetails = new Object[11];
+                bookingDetails[0] = rs.getInt("booking_Id");
+                bookingDetails[1] = rs.getString("booking_Date");
+                bookingDetails[2] = rs.getString("booking_Time");
+                bookingDetails[3] = rs.getString("status");
+                bookingDetails[4] = rs.getString("notes");
+                bookingDetails[5] = rs.getInt("user_id");
+                bookingDetails[6] = rs.getString("user_name");
+                bookingDetails[7] = rs.getString("user_email");
+                bookingDetails[8] = rs.getString("user_phone");
+                bookingDetails[9] = rs.getString("service_Name");
+                bookingDetails[10] = rs.getString("duration");
+
+                pendingBookings.add(bookingDetails);
+            }
+        }
+
+        // Print debug information
+        System.out.println("Total pending bookings: " + pendingBookings.size());
+
+        return pendingBookings;
+    }
+
     // Get detailed bookings with user and service information
     public List<Object[]> getDetailedBookings() throws SQLException {
         List<Object[]> detailedBookings = new ArrayList<>();
@@ -255,6 +294,124 @@ public class BookingDAO {
                 bookingDetails[10] = rs.getString("duration");
 
                 detailedBookings.add(bookingDetails);
+            }
+        }
+
+        return detailedBookings;
+    }
+
+    // Get detailed bookings filtered by status
+    public List<Object[]> getDetailedBookingsByStatus(String status) throws SQLException {
+        List<Object[]> detailedBookings = new ArrayList<>();
+        String query = "SELECT b.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM booking b " +
+                      "JOIN user u ON b.user_id = u.user_id " +
+                      "JOIN service s ON b.service_Id = s.service_Id " +
+                      "WHERE b.status = ? " +
+                      "ORDER BY b.booking_Date DESC, b.booking_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, status);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] bookingDetails = new Object[11];
+                    bookingDetails[0] = rs.getInt("booking_Id");
+                    bookingDetails[1] = rs.getString("booking_Date");
+                    bookingDetails[2] = rs.getString("booking_Time");
+                    bookingDetails[3] = rs.getString("status");
+                    bookingDetails[4] = rs.getString("notes");
+                    bookingDetails[5] = rs.getInt("user_id");
+                    bookingDetails[6] = rs.getString("user_name");
+                    bookingDetails[7] = rs.getString("user_email");
+                    bookingDetails[8] = rs.getString("user_phone");
+                    bookingDetails[9] = rs.getString("service_Name");
+                    bookingDetails[10] = rs.getString("duration");
+
+                    detailedBookings.add(bookingDetails);
+                }
+            }
+        }
+
+        return detailedBookings;
+    }
+
+    // Get detailed bookings filtered by date
+    public List<Object[]> getDetailedBookingsByDate(String date) throws SQLException {
+        List<Object[]> detailedBookings = new ArrayList<>();
+        String query = "SELECT b.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM booking b " +
+                      "JOIN user u ON b.user_id = u.user_id " +
+                      "JOIN service s ON b.service_Id = s.service_Id " +
+                      "WHERE b.booking_Date = ? " +
+                      "ORDER BY b.booking_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, date);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] bookingDetails = new Object[11];
+                    bookingDetails[0] = rs.getInt("booking_Id");
+                    bookingDetails[1] = rs.getString("booking_Date");
+                    bookingDetails[2] = rs.getString("booking_Time");
+                    bookingDetails[3] = rs.getString("status");
+                    bookingDetails[4] = rs.getString("notes");
+                    bookingDetails[5] = rs.getInt("user_id");
+                    bookingDetails[6] = rs.getString("user_name");
+                    bookingDetails[7] = rs.getString("user_email");
+                    bookingDetails[8] = rs.getString("user_phone");
+                    bookingDetails[9] = rs.getString("service_Name");
+                    bookingDetails[10] = rs.getString("duration");
+
+                    detailedBookings.add(bookingDetails);
+                }
+            }
+        }
+
+        return detailedBookings;
+    }
+
+    // Get detailed bookings filtered by both status and date
+    public List<Object[]> getDetailedBookingsByStatusAndDate(String status, String date) throws SQLException {
+        List<Object[]> detailedBookings = new ArrayList<>();
+        String query = "SELECT b.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM booking b " +
+                      "JOIN user u ON b.user_id = u.user_id " +
+                      "JOIN service s ON b.service_Id = s.service_Id " +
+                      "WHERE b.status = ? AND b.booking_Date = ? " +
+                      "ORDER BY b.booking_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, status);
+            pstmt.setString(2, date);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] bookingDetails = new Object[11];
+                    bookingDetails[0] = rs.getInt("booking_Id");
+                    bookingDetails[1] = rs.getString("booking_Date");
+                    bookingDetails[2] = rs.getString("booking_Time");
+                    bookingDetails[3] = rs.getString("status");
+                    bookingDetails[4] = rs.getString("notes");
+                    bookingDetails[5] = rs.getInt("user_id");
+                    bookingDetails[6] = rs.getString("user_name");
+                    bookingDetails[7] = rs.getString("user_email");
+                    bookingDetails[8] = rs.getString("user_phone");
+                    bookingDetails[9] = rs.getString("service_Name");
+                    bookingDetails[10] = rs.getString("duration");
+
+                    detailedBookings.add(bookingDetails);
+                }
             }
         }
 

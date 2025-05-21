@@ -58,7 +58,7 @@ public class AdminDashboardServlet extends HttpServlet {
 
             // Verify admin role
             if (userEmail == null || !"admin".equals(userRole)) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("login.jsp?error=unauthorized");
                 return;
             }
 
@@ -69,6 +69,8 @@ public class AdminDashboardServlet extends HttpServlet {
             String statusFilter = request.getParameter("statusFilter");
             String searchQuery = request.getParameter("searchQuery");
             String dateFilter = request.getParameter("dateFilter");
+            String bookingStatusFilter = request.getParameter("bookingStatusFilter");
+            String bookingDateFilter = request.getParameter("bookingDateFilter");
 
             // Get dashboard data for bookings
             int pendingCount = bookingDAO.getBookingCountByStatus("Pending");
@@ -76,18 +78,44 @@ public class AdminDashboardServlet extends HttpServlet {
             int cancelledCount = bookingDAO.getBookingCountByStatus("Cancelled");
             int completedCount = bookingDAO.getBookingCountByStatus("Completed");
 
-            // Get all bookings with details
-            List<Object[]> bookings = bookingDAO.getDetailedBookings();
+            // Get pending bookings separately for the dedicated section
+            List<Object[]> pendingBookings = bookingDAO.getPendingBookings();
+            System.out.println("Pending bookings count: " + pendingBookings.size());
+
+            // Get bookings with details (filtered if parameters are provided)
+            List<Object[]> bookings;
+            if (bookingStatusFilter != null && !bookingStatusFilter.isEmpty() && bookingDateFilter != null && !bookingDateFilter.isEmpty()) {
+                // Filter by both status and date
+                bookings = bookingDAO.getDetailedBookingsByStatusAndDate(bookingStatusFilter, bookingDateFilter);
+            } else if (bookingStatusFilter != null && !bookingStatusFilter.isEmpty()) {
+                // Filter by status only
+                bookings = bookingDAO.getDetailedBookingsByStatus(bookingStatusFilter);
+            } else if (bookingDateFilter != null && !bookingDateFilter.isEmpty()) {
+                // Filter by date only
+                bookings = bookingDAO.getDetailedBookingsByDate(bookingDateFilter);
+            } else {
+                // No filters - prioritize pending bookings
+                bookings = bookingDAO.getDetailedBookings();
+            }
 
             // Get dashboard data for appointments
-            int pendingAppointments = appointmentDAO.getAppointmentCountByStatus("Pending");
+            int pendingAppointmentsCount = appointmentDAO.getAppointmentCountByStatus("Pending");
             int confirmedAppointments = appointmentDAO.getAppointmentCountByStatus("Confirmed");
             int rejectedAppointments = appointmentDAO.getAppointmentCountByStatus("Rejected");
             int completedAppointments = appointmentDAO.getAppointmentCountByStatus("Completed");
 
             // Get appointments with details (filtered if parameters are provided)
             List<Object[]> appointments;
-            if (statusFilter != null && !statusFilter.isEmpty() && dateFilter != null && !dateFilter.isEmpty()) {
+
+            // Get pending appointments separately for the dedicated section
+            List<Object[]> pendingAppointmentsList = appointmentDAO.getPendingAppointments();
+            System.out.println("Pending appointments count: " + pendingAppointmentsList.size());
+
+            // If we're on the appointments section and no filters are applied, prioritize pending appointments
+            if ("appointments".equals(section) && (statusFilter == null || statusFilter.isEmpty()) && (dateFilter == null || dateFilter.isEmpty())) {
+                // Get all appointments but ensure pending ones are at the top
+                appointments = appointmentDAO.getDetailedAppointmentsWithPendingFirst();
+            } else if (statusFilter != null && !statusFilter.isEmpty() && dateFilter != null && !dateFilter.isEmpty()) {
                 // Filter by both status and date
                 appointments = appointmentDAO.getDetailedAppointmentsByStatusAndDate(statusFilter, dateFilter);
             } else if (statusFilter != null && !statusFilter.isEmpty()) {
@@ -118,18 +146,22 @@ public class AdminDashboardServlet extends HttpServlet {
             request.setAttribute("cancelledCount", cancelledCount);
             request.setAttribute("completedCount", completedCount);
             request.setAttribute("bookings", bookings);
+            request.setAttribute("pendingBookings", pendingBookings);
 
-            request.setAttribute("pendingAppointments", pendingAppointments);
+            request.setAttribute("pendingAppointmentsCount", pendingAppointmentsCount);
             request.setAttribute("confirmedAppointments", confirmedAppointments);
             request.setAttribute("rejectedAppointments", rejectedAppointments);
             request.setAttribute("completedAppointments", completedAppointments);
             request.setAttribute("appointments", appointments);
+            request.setAttribute("pendingAppointments", pendingAppointmentsList);
             request.setAttribute("statusFilter", statusFilter);
 
             request.setAttribute("services", services);
             request.setAttribute("users", users);
             request.setAttribute("searchQuery", searchQuery);
             request.setAttribute("dateFilter", dateFilter);
+            request.setAttribute("bookingStatusFilter", bookingStatusFilter);
+            request.setAttribute("bookingDateFilter", bookingDateFilter);
 
             // Set the active section based on the section parameter
             if (section != null && !section.isEmpty()) {
@@ -170,6 +202,8 @@ public class AdminDashboardServlet extends HttpServlet {
                 searchUsers(request, response);
             } else if ("filterAppointments".equals(action)) {
                 filterAppointments(request, response);
+            } else if ("filterBookings".equals(action)) {
+                filterBookings(request, response);
             } else {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid action");
             }
@@ -444,6 +478,46 @@ public class AdminDashboardServlet extends HttpServlet {
 
         // Log the filter parameters for debugging
         System.out.println("Filtering appointments - Status: " + statusFilter + ", Date: " + dateFilter);
+
+        response.sendRedirect(redirectUrl.toString());
+    }
+
+    private void filterBookings(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        String bookingStatusFilter = request.getParameter("bookingStatusFilter");
+        String bookingDateFilter = request.getParameter("bookingDateFilter");
+        String section = request.getParameter("section");
+
+        StringBuilder redirectUrl = new StringBuilder("admin-dashboard?");
+
+        if (section != null && !section.isEmpty()) {
+            redirectUrl.append("section=").append(section);
+
+            if (bookingStatusFilter != null && !bookingStatusFilter.isEmpty()) {
+                redirectUrl.append("&bookingStatusFilter=").append(bookingStatusFilter);
+            }
+
+            if (bookingDateFilter != null && !bookingDateFilter.isEmpty()) {
+                redirectUrl.append("&bookingDateFilter=").append(bookingDateFilter);
+            }
+        } else {
+            boolean hasParam = false;
+
+            if (bookingStatusFilter != null && !bookingStatusFilter.isEmpty()) {
+                redirectUrl.append("bookingStatusFilter=").append(bookingStatusFilter);
+                hasParam = true;
+            }
+
+            if (bookingDateFilter != null && !bookingDateFilter.isEmpty()) {
+                if (hasParam) {
+                    redirectUrl.append("&bookingDateFilter=").append(bookingDateFilter);
+                } else {
+                    redirectUrl.append("bookingDateFilter=").append(bookingDateFilter);
+                }
+            }
+        }
+
+        // Log the filter parameters for debugging
+        System.out.println("Filtering bookings - Status: " + bookingStatusFilter + ", Date: " + bookingDateFilter);
 
         response.sendRedirect(redirectUrl.toString());
     }

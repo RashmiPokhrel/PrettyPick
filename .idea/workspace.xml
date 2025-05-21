@@ -10,63 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9cf03d1d-a8e6-42f8-a510-26c13ee91c78" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/feedback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/user.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/LoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/Sign_upServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AugmentWebviewStateStore.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/AppointmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AppointmentDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BookingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/FeedbackDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/FeedbackDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlet/AdminDashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/AdminDashboardServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/BookingServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/BookingServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/BookingsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/BookingsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/FeedbackServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/FeedbackServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlet/UserDashboardServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/UserDashboardServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/404.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/404.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/AdminDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/AdminDashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/UserDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/UserDashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/feedbacks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/feedbacks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/my-bookings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/my-bookings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/service-updated.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/service-updated.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/service.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/service.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/signup.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/404.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/404.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/includes/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/AdminDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/AdminDashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/UserDashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/UserDashboard.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/AppointmentDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/AppointmentDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/BookingDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/BookingDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/FeedbackDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/FeedbackDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/dao/UserDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/AdminDashboardServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/AdminDashboardServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/BookingServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/BookingServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/BookingsServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/BookingsServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/FeedbackServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/FeedbackServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/UserDashboardServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/classes/servlet/UserDashboardServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/bookings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/bookings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/feedbacks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/feedbacks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/my-bookings.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/my-bookings.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service-updated.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service-updated.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/service.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/includes/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Pretty-Pick-0.0.1-SNAPSHOT/includes/header.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dao/AppointmentDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/AppointmentDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/dao/BookingDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/BookingDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/FeedbackDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/FeedbackDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dao/UserDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/servlet/AdminDashboardServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlet/AdminDashboardServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlet/BookingServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlet/BookingServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlet/BookingsServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlet/BookingsServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlet/FeedbackServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlet/FeedbackServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlet/UserDashboardServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlet/UserDashboardServlet.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,7 +338,7 @@
       <workItem from="1747725344150" duration="286000" />
       <workItem from="1747802376335" duration="1192000" />
       <workItem from="1747804374224" duration="550000" />
-      <workItem from="1747813224446" duration="559000" />
+      <workItem from="1747813224446" duration="4289000" />
     </task>
     <servers />
   </component>

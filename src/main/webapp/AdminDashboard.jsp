@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrettyPick - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Reset and base styles */
         * {
@@ -764,7 +765,7 @@
                     </div>
                     <div class="info-card">
                         <h3>Appointment Statistics</h3>
-                        <p><strong>Pending:</strong> ${pendingAppointments}</p>
+                        <p><strong>Pending:</strong> ${pendingAppointmentsCount}</p>
                         <p><strong>Confirmed:</strong> ${confirmedAppointments}</p>
                         <p><strong>Rejected:</strong> ${rejectedAppointments}</p>
                         <p><strong>Completed:</strong> ${completedAppointments}</p>
@@ -774,7 +775,71 @@
 
             <!-- Manage Appointments -->
             <div id="appointments" class="content-section ${activeSection == 'appointments' ? 'active' : ''}">
-                <h2>Manage Appointments</h2>
+                <h2>Manage Appointment Requests</h2>
+                <p>This section displays all appointment requests made by users. You can accept or reject pending appointments.</p>
+
+                <!-- Pending Appointments Section -->
+                <div class="info-card" style="margin-bottom: 2rem; background-color: #fff3cd; border-left: 4px solid #856404;">
+                    <h3 style="color: #856404;">Pending Appointments</h3>
+                    <p>These appointments require your attention. Please accept or reject them.</p>
+
+                    <c:set var="hasPendingAppointments" value="false" />
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:choose>
+                            <c:when test="${not empty pendingAppointments}">
+                                <c:forEach var="appointment" items="${pendingAppointments}">
+                                    <tr>
+                                        <td>${appointment[0]}</td>
+                                        <td>${appointment[5]}</td>
+                                        <td>${appointment[6]}</td>
+                                        <td>${appointment[7]}</td>
+                                        <td>${appointment[8]}</td>
+                                        <td>${appointment[1]}</td>
+                                        <td>${appointment[2]}</td>
+                                        <td>
+                                            <form action="admin-dashboard" method="post" style="display:inline;">
+                                                <input type="hidden" name="action" value="updateAppointmentStatus">
+                                                <input type="hidden" name="section" value="appointments">
+                                                <input type="hidden" name="appointmentId" value="${appointment[0]}">
+                                                <input type="hidden" name="status" value="Confirmed">
+                                                <button type="submit" class="action-btn confirm-btn" title="Accept this appointment request">Accept</button>
+                                            </form>
+                                            <form action="admin-dashboard" method="post" style="display:inline;">
+                                                <input type="hidden" name="action" value="updateAppointmentStatus">
+                                                <input type="hidden" name="section" value="appointments">
+                                                <input type="hidden" name="appointmentId" value="${appointment[0]}">
+                                                <input type="hidden" name="status" value="Rejected">
+                                                <button type="submit" class="action-btn cancel-btn" title="Reject this appointment request">Reject</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td colspan="8" style="text-align: center;">No pending appointments found</td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- All Appointments Section -->
+                <h3>All Appointments</h3>
 
                 <!-- Filter Form -->
                 <form action="admin-dashboard" method="post" class="filter-form" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
@@ -796,6 +861,9 @@
                     </div>
                     <div class="form-group" style="align-self: flex-end; margin-bottom: 0;">
                         <button type="submit" class="submit-btn">Apply Filters</button>
+                        <c:if test="${not empty statusFilter || not empty dateFilter}">
+                            <a href="admin-dashboard?section=appointments" class="action-btn" style="margin-left: 0.5rem; text-decoration: none;">Clear Filters</a>
+                        </c:if>
                     </div>
                 </form>
 
@@ -831,14 +899,14 @@
                                         <input type="hidden" name="section" value="appointments">
                                         <input type="hidden" name="appointmentId" value="${appointment[0]}">
                                         <input type="hidden" name="status" value="Confirmed">
-                                        <button type="submit" class="action-btn confirm-btn">Accept</button>
+                                        <button type="submit" class="action-btn confirm-btn" title="Accept this appointment request">Accept</button>
                                     </form>
                                     <form action="admin-dashboard" method="post" style="display:inline;">
                                         <input type="hidden" name="action" value="updateAppointmentStatus">
                                         <input type="hidden" name="section" value="appointments">
                                         <input type="hidden" name="appointmentId" value="${appointment[0]}">
                                         <input type="hidden" name="status" value="Rejected">
-                                        <button type="submit" class="action-btn cancel-btn">Reject</button>
+                                        <button type="submit" class="action-btn cancel-btn" title="Reject this appointment request">Reject</button>
                                     </form>
                                 </c:if>
                                 <c:if test="${appointment[3] == 'Confirmed'}">
@@ -847,16 +915,32 @@
                                         <input type="hidden" name="section" value="appointments">
                                         <input type="hidden" name="appointmentId" value="${appointment[0]}">
                                         <input type="hidden" name="status" value="Completed">
-                                        <button type="submit" class="action-btn complete-btn">Complete</button>
+                                        <button type="submit" class="action-btn complete-btn" title="Mark this appointment as completed">Complete</button>
+                                    </form>
+                                    <form action="admin-dashboard" method="post" style="display:inline;">
+                                        <input type="hidden" name="action" value="updateAppointmentStatus">
+                                        <input type="hidden" name="section" value="appointments">
+                                        <input type="hidden" name="appointmentId" value="${appointment[0]}">
+                                        <input type="hidden" name="status" value="Rejected">
+                                        <button type="submit" class="action-btn cancel-btn" title="Reject this appointment">Reject</button>
                                     </form>
                                 </c:if>
-                                <c:if test="${appointment[3] == 'Rejected' || appointment[3] == 'Completed'}">
+                                <c:if test="${appointment[3] == 'Rejected'}">
                                     <form action="admin-dashboard" method="post" style="display:inline;">
                                         <input type="hidden" name="action" value="updateAppointmentStatus">
                                         <input type="hidden" name="section" value="appointments">
                                         <input type="hidden" name="appointmentId" value="${appointment[0]}">
                                         <input type="hidden" name="status" value="Pending">
-                                        <button type="submit" class="action-btn reopen-btn">Reopen</button>
+                                        <button type="submit" class="action-btn reopen-btn" title="Mark this appointment as pending again">Mark as Pending</button>
+                                    </form>
+                                </c:if>
+                                <c:if test="${appointment[3] == 'Completed'}">
+                                    <form action="admin-dashboard" method="post" style="display:inline;">
+                                        <input type="hidden" name="action" value="updateAppointmentStatus">
+                                        <input type="hidden" name="section" value="appointments">
+                                        <input type="hidden" name="appointmentId" value="${appointment[0]}">
+                                        <input type="hidden" name="status" value="Pending">
+                                        <button type="submit" class="action-btn reopen-btn" title="Mark this appointment as pending again">Reopen</button>
                                     </form>
                                 </c:if>
                             </td>
@@ -874,13 +958,93 @@
             <!-- Manage Bookings -->
             <div id="bookings" class="content-section ${activeSection == 'bookings' ? 'active' : ''}">
                 <h2>Manage Bookings</h2>
+                <p>This section displays all bookings made by users. You can accept, cancel, or manage booking status.</p>
+
+                <!-- Pending Bookings Section -->
+                <div class="info-card" style="margin-bottom: 2rem; background-color: #e3f2fd; border-left: 4px solid #1976d2;">
+                    <h3 style="color: #1976d2;">Pending Bookings</h3>
+                    <p>These bookings require your attention. Please accept or cancel them.</p>
+
+                    <c:set var="hasPendingBookings" value="false" />
+                    <div class="booking-cards-container" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                        <c:forEach var="booking" items="${bookings}">
+                            <c:if test="${booking[3] == 'Pending'}">
+                                <c:set var="hasPendingBookings" value="true" />
+                                <div class="booking-card" style="background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 1rem; width: calc(33.33% - 1rem); min-width: 300px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <h4 style="margin: 0; color: #333;">${booking[9]}</h4>
+                                        <span class="status-badge pending" style="background: #fff3cd; color: #856404; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Pending</span>
+                                    </div>
+                                    <div style="margin-bottom: 0.5rem;">
+                                        <p style="margin: 0.25rem 0;"><strong>Customer:</strong> ${booking[6]}</p>
+                                        <p style="margin: 0.25rem 0;"><strong>Date:</strong> ${booking[1]}</p>
+                                        <p style="margin: 0.25rem 0;"><strong>Time:</strong> ${booking[2]}</p>
+                                        <p style="margin: 0.25rem 0;"><strong>Duration:</strong> ${booking[10]}</p>
+                                    </div>
+                                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                                        <form action="admin-dashboard" method="post" style="flex: 1;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Confirmed">
+                                            <button type="submit" class="action-btn confirm-btn" style="width: 100%; padding: 0.5rem; border-radius: 4px;" title="Accept this booking">Accept</button>
+                                        </form>
+                                        <form action="admin-dashboard" method="post" style="flex: 1;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Cancelled">
+                                            <button type="submit" class="action-btn cancel-btn" style="width: 100%; padding: 0.5rem; border-radius: 4px;" title="Cancel this booking">Cancel</button>
+                                        </form>
+                                        <button class="action-btn view-btn" style="flex: 0.5; padding: 0.5rem; border-radius: 4px;" onclick="viewBookingDetails(${booking[0]}, '${booking[6]}', '${booking[7]}', '${booking[8]}', '${booking[9]}', '${booking[1]}', '${booking[2]}', '${booking[3]}', '${booking[4]}', '${booking[10]}')" title="View booking details">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${!hasPendingBookings}">
+                            <div style="width: 100%; text-align: center; padding: 2rem; background: white; border-radius: 8px;">
+                                <p style="margin: 0; color: #666;">No pending bookings found</p>
+                            </div>
+                        </c:if>
+                    </div>
+                </div>
+
+                <!-- All Bookings Section -->
+                <h3>All Bookings</h3>
+
+                <!-- Filter Form for Bookings -->
+                <form action="admin-dashboard" method="post" class="filter-form" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <input type="hidden" name="action" value="filterBookings">
+                    <input type="hidden" name="section" value="bookings">
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <label for="bookingStatusFilter">Filter by Status</label>
+                        <select id="bookingStatusFilter" name="bookingStatusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="Pending" ${bookingStatusFilter == 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Confirmed" ${bookingStatusFilter == 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+                            <option value="Completed" ${bookingStatusFilter == 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Cancelled" ${bookingStatusFilter == 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <label for="bookingDateFilter">Filter by Date</label>
+                        <input type="date" id="bookingDateFilter" name="bookingDateFilter" value="${bookingDateFilter}">
+                    </div>
+                    <div class="form-group" style="align-self: flex-end; margin-bottom: 0;">
+                        <button type="submit" class="submit-btn">Apply Filters</button>
+                        <c:if test="${not empty bookingStatusFilter || not empty bookingDateFilter}">
+                            <a href="admin-dashboard?section=bookings" class="action-btn" style="margin-left: 0.5rem; text-decoration: none;">Clear Filters</a>
+                        </c:if>
+                    </div>
+                </form>
+
                 <table>
                     <thead>
                     <tr>
-                        <th>Booking ID</th>
+                        <th>ID</th>
                         <th>Customer</th>
-                        <th>Email</th>
-                        <th>Phone</th>
                         <th>Service</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -892,57 +1056,83 @@
                     <c:forEach var="booking" items="${bookings}">
                         <tr>
                             <td>${booking[0]}</td>
-                            <td>${booking[6]}</td>
-                            <td>${booking[7]}</td>
-                            <td>${booking[8]}</td>
+                            <td>
+                                <div>
+                                    <div style="font-weight: bold;">${booking[6]}</div>
+                                    <div style="font-size: 0.8rem; color: #666;">${booking[7]}</div>
+                                    <div style="font-size: 0.8rem; color: #666;">${booking[8]}</div>
+                                </div>
+                            </td>
                             <td>${booking[9]}</td>
                             <td>${booking[1]}</td>
                             <td>${booking[2]}</td>
-                            <td><span class="status-badge ${booking[3].toLowerCase()}">${booking[3]}</span></td>
                             <td>
-                                <button class="action-btn view-btn" onclick="viewBookingDetails(${booking[0]}, '${booking[6]}', '${booking[7]}', '${booking[8]}', '${booking[9]}', '${booking[1]}', '${booking[2]}', '${booking[3]}', '${booking[4]}', '${booking[10]}')">View</button>
+                                <c:choose>
+                                    <c:when test="${booking[3] == 'Pending'}">
+                                        <span class="status-badge pending" style="background: #fff3cd; color: #856404; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Pending</span>
+                                    </c:when>
+                                    <c:when test="${booking[3] == 'Confirmed'}">
+                                        <span class="status-badge confirmed" style="background: #d4edda; color: #155724; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Confirmed</span>
+                                    </c:when>
+                                    <c:when test="${booking[3] == 'Completed'}">
+                                        <span class="status-badge completed" style="background: #cce5ff; color: #004085; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Completed</span>
+                                    </c:when>
+                                    <c:when test="${booking[3] == 'Cancelled'}">
+                                        <span class="status-badge cancelled" style="background: #f8d7da; color: #721c24; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem;">Cancelled</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="status-badge">${booking[3]}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="action-btn view-btn" style="padding: 0.4rem 0.6rem; border-radius: 4px;" onclick="viewBookingDetails(${booking[0]}, '${booking[6]}', '${booking[7]}', '${booking[8]}', '${booking[9]}', '${booking[1]}', '${booking[2]}', '${booking[3]}', '${booking[4]}', '${booking[10]}')" title="View booking details">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
 
-                                <c:if test="${booking[3] == 'Pending'}">
-                                    <form action="admin-dashboard" method="post" style="display:inline;">
-                                        <input type="hidden" name="action" value="updateBookingStatus">
-                                        <input type="hidden" name="section" value="bookings">
-                                        <input type="hidden" name="bookingId" value="${booking[0]}">
-                                        <input type="hidden" name="status" value="Confirmed">
-                                        <button type="submit" class="action-btn confirm-btn">Confirm</button>
-                                    </form>
-                                    <form action="admin-dashboard" method="post" style="display:inline;">
-                                        <input type="hidden" name="action" value="updateBookingStatus">
-                                        <input type="hidden" name="section" value="bookings">
-                                        <input type="hidden" name="bookingId" value="${booking[0]}">
-                                        <input type="hidden" name="status" value="Cancelled">
-                                        <button type="submit" class="action-btn cancel-btn">Cancel</button>
-                                    </form>
-                                </c:if>
-                                <c:if test="${booking[3] == 'Confirmed'}">
-                                    <form action="admin-dashboard" method="post" style="display:inline;">
-                                        <input type="hidden" name="action" value="updateBookingStatus">
-                                        <input type="hidden" name="section" value="bookings">
-                                        <input type="hidden" name="bookingId" value="${booking[0]}">
-                                        <input type="hidden" name="status" value="Completed">
-                                        <button type="submit" class="action-btn complete-btn">Complete</button>
-                                    </form>
-                                    <form action="admin-dashboard" method="post" style="display:inline;">
-                                        <input type="hidden" name="action" value="updateBookingStatus">
-                                        <input type="hidden" name="section" value="bookings">
-                                        <input type="hidden" name="bookingId" value="${booking[0]}">
-                                        <input type="hidden" name="status" value="Cancelled">
-                                        <button type="submit" class="action-btn cancel-btn">Cancel</button>
-                                    </form>
-                                </c:if>
-                                <c:if test="${booking[3] == 'Cancelled'}">
-                                    <form action="admin-dashboard" method="post" style="display:inline;">
-                                        <input type="hidden" name="action" value="updateBookingStatus">
-                                        <input type="hidden" name="section" value="bookings">
-                                        <input type="hidden" name="bookingId" value="${booking[0]}">
-                                        <input type="hidden" name="status" value="Pending">
-                                        <button type="submit" class="action-btn reopen-btn">Reopen</button>
-                                    </form>
-                                </c:if>
+                                    <c:if test="${booking[3] == 'Pending'}">
+                                        <form action="admin-dashboard" method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Confirmed">
+                                            <button type="submit" class="action-btn confirm-btn" style="padding: 0.4rem 0.6rem; border-radius: 4px;" title="Accept this booking">Accept</button>
+                                        </form>
+                                        <form action="admin-dashboard" method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Cancelled">
+                                            <button type="submit" class="action-btn cancel-btn" style="padding: 0.4rem 0.6rem; border-radius: 4px;" title="Cancel this booking">Cancel</button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${booking[3] == 'Confirmed'}">
+                                        <form action="admin-dashboard" method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Completed">
+                                            <button type="submit" class="action-btn complete-btn" style="padding: 0.4rem 0.6rem; border-radius: 4px;" title="Mark this booking as completed">Complete</button>
+                                        </form>
+                                        <form action="admin-dashboard" method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Cancelled">
+                                            <button type="submit" class="action-btn cancel-btn" style="padding: 0.4rem 0.6rem; border-radius: 4px;" title="Cancel this booking">Cancel</button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${booking[3] == 'Cancelled' || booking[3] == 'Completed'}">
+                                        <form action="admin-dashboard" method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="updateBookingStatus">
+                                            <input type="hidden" name="section" value="bookings">
+                                            <input type="hidden" name="bookingId" value="${booking[0]}">
+                                            <input type="hidden" name="status" value="Pending">
+                                            <button type="submit" class="action-btn reopen-btn" style="padding: 0.4rem 0.6rem; border-radius: 4px;" title="Reopen this booking">Reopen</button>
+                                        </form>
+                                    </c:if>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>
@@ -958,35 +1148,45 @@
             <!-- Manage Services -->
             <div id="services" class="content-section ${activeSection == 'services' ? 'active' : ''}">
                 <h2>Manage Services</h2>
-                <form action="admin-dashboard" method="post">
-                    <input type="hidden" name="action" value="addService">
-                    <input type="hidden" name="section" value="services">
-                    <div class="form-group">
-                        <label for="serviceName">Service Name</label>
-                        <input type="text" id="serviceName" name="serviceName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price ($)</label>
-                        <input type="number" id="price" name="price" step="0.01" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duration (minutes)</label>
-                        <input type="text" id="duration" name="duration" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select id="status" name="status" required>
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn">Add Service</button>
-                </form>
+                <p>This section allows you to add, update, or delete services offered by PrettyPick. These services will be shown to users during the appointment booking process.</p>
 
+                <!-- Add Service Form -->
+                <div class="info-card" style="margin-bottom: 2rem;">
+                    <h3>Add New Service</h3>
+                    <form action="admin-dashboard" method="post">
+                        <input type="hidden" name="action" value="addService">
+                        <input type="hidden" name="section" value="services">
+                        <div class="form-group">
+                            <label for="serviceName">Service Name</label>
+                            <input type="text" id="serviceName" name="serviceName" required placeholder="e.g., Haircut, Manicure, Facial">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" required placeholder="Detailed description of the service"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="price">Price ($)</label>
+                                <input type="number" id="price" name="price" step="0.01" required placeholder="e.g., 49.99">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="duration">Duration</label>
+                                <input type="text" id="duration" name="duration" required placeholder="e.g., 30 min, 1 hour">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="status">Status</label>
+                                <select id="status" name="status" required>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Add Service</button>
+                    </form>
+                </div>
+
+                <!-- Services Table -->
+                <h3>Current Services</h3>
                 <table>
                     <thead>
                     <tr>
@@ -1007,14 +1207,14 @@
                             <td>${service.description}</td>
                             <td>$${service.price}</td>
                             <td>${service.duration}</td>
-                            <td>${service.status}</td>
+                            <td><span class="status-badge ${service.status == 'Active' ? 'confirmed' : 'cancelled'}">${service.status}</span></td>
                             <td>
-                                <button class="action-btn edit-btn" onclick="editService(${service.service_Id}, '${service.service_Name}', '${service.description}', ${service.price}, '${service.duration}', '${service.status}')">Edit</button>
-                                <form action="admin-dashboard" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                <button class="action-btn edit-btn" onclick="editService(${service.service_Id}, '${service.service_Name}', '${service.description}', ${service.price}, '${service.duration}', '${service.status}')" title="Edit this service">Edit</button>
+                                <form action="admin-dashboard" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this service? This action cannot be undone.');">
                                     <input type="hidden" name="action" value="deleteService">
                                     <input type="hidden" name="section" value="services">
                                     <input type="hidden" name="serviceId" value="${service.service_Id}">
-                                    <button type="submit" class="action-btn delete-btn">Delete</button>
+                                    <button type="submit" class="action-btn delete-btn" title="Delete this service">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -1044,20 +1244,22 @@
                                 <label for="editDescription">Description</label>
                                 <textarea id="editDescription" name="description" required></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="editPrice">Price ($)</label>
-                                <input type="number" id="editPrice" name="price" step="0.01" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editDuration">Duration (minutes)</label>
-                                <input type="text" id="editDuration" name="duration" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editStatus">Status</label>
-                                <select id="editStatus" name="status" required>
-                                    <option value="Active">Active</option>
-                                    <option value="Inactive">Inactive</option>
-                                </select>
+                            <div style="display: flex; gap: 1rem;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editPrice">Price ($)</label>
+                                    <input type="number" id="editPrice" name="price" step="0.01" required>
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editDuration">Duration</label>
+                                    <input type="text" id="editDuration" name="duration" required>
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editStatus">Status</label>
+                                    <select id="editStatus" name="status" required>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
                             </div>
                             <button type="submit" class="submit-btn">Update Service</button>
                         </form>
@@ -1068,53 +1270,67 @@
             <!-- Manage Users -->
             <div id="users" class="content-section ${activeSection == 'users' ? 'active' : ''}">
                 <h2>Manage Users</h2>
+                <p>This section lists all registered users on PrettyPick. You can view their details, edit their information, or manage their accounts.</p>
 
                 <!-- Search Form -->
-                <form action="admin-dashboard" method="post" class="search-form" style="display: flex; gap: 1rem; margin-bottom: 1rem; background: none; padding: 0;">
+                <form action="admin-dashboard" method="post" class="search-form" style="display: flex; gap: 1rem; margin-bottom: 1.5rem; background: var(--snow-white); padding: 1rem; border-radius: 10px;">
                     <input type="hidden" name="action" value="searchUsers">
                     <input type="hidden" name="section" value="users">
                     <div class="form-group" style="flex: 1; margin-bottom: 0;">
                         <label for="searchQuery">Search Users</label>
-                        <input type="text" id="searchQuery" name="searchQuery" placeholder="Search by name or email" value="${searchQuery}">
+                        <input type="text" id="searchQuery" name="searchQuery" placeholder="Search by name, email, or phone" value="${searchQuery}">
                     </div>
                     <div class="form-group" style="align-self: flex-end; margin-bottom: 0;">
                         <button type="submit" class="submit-btn">Search</button>
+                        <c:if test="${not empty searchQuery}">
+                            <a href="admin-dashboard?section=users" class="action-btn" style="margin-left: 0.5rem; text-decoration: none;">Clear</a>
+                        </c:if>
                     </div>
                 </form>
 
-                <form action="admin-dashboard" method="post">
-                    <input type="hidden" name="action" value="addUser">
-                    <input type="hidden" name="section" value="users">
-                    <div class="form-group">
-                        <label for="userName">Name</label>
-                        <input type="text" id="userName" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userEmail">Email</label>
-                        <input type="email" id="userEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userPhone">Phone</label>
-                        <input type="text" id="userPhone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="userPassword">Password</label>
-                        <input type="password" id="userPassword" name="password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userRole">Role</label>
-                        <select id="userRole" name="role" required>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn">Add User</button>
-                </form>
+                <!-- Add User Form -->
+                <div class="info-card" style="margin-bottom: 2rem;">
+                    <h3>Add New User</h3>
+                    <form action="admin-dashboard" method="post">
+                        <input type="hidden" name="action" value="addUser">
+                        <input type="hidden" name="section" value="users">
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="userName">Name</label>
+                                <input type="text" id="userName" name="name" required placeholder="Full Name">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="userEmail">Email</label>
+                                <input type="email" id="userEmail" name="email" required placeholder="email@example.com">
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="userPhone">Phone</label>
+                                <input type="text" id="userPhone" name="phone" placeholder="Phone Number (optional)">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="userPassword">Password</label>
+                                <input type="password" id="userPassword" name="password" required placeholder="Password">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="userRole">Role</label>
+                                <select id="userRole" name="role" required>
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Add User</button>
+                    </form>
+                </div>
 
+                <!-- Users Table -->
+                <h3>Registered Users</h3>
                 <table>
                     <thead>
                     <tr>
-                        <th>User ID</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -1125,19 +1341,19 @@
                     <tbody>
                     <c:forEach var="user" items="${users}">
                         <tr>
-                            <td>${user.userId}</td>
+                            <td>${user.user_id}</td>
                             <td>${user.name}</td>
                             <td>${user.email}</td>
                             <td>${user.phone}</td>
-                            <td>${user.role}</td>
+                            <td><span class="status-badge ${user.role == 'admin' ? 'completed' : 'confirmed'}">${user.role}</span></td>
                             <td>
-                                <button class="action-btn edit-btn" onclick="editUser(${user.userId}, '${user.name}', '${user.email}', '${user.phone}', '${user.role}')">Edit</button>
-                                <c:if test="${user.role != 'admin'}">
-                                    <form action="admin-dashboard" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <button class="action-btn edit-btn" onclick="editUser(${user.user_id}, '${user.name}', '${user.email}', '${user.phone}', '${user.role}')" title="Edit user information">Edit</button>
+                                <c:if test="${user.role != 'admin' || user.email != 'admin@gmail.com'}">
+                                    <form action="admin-dashboard" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user? This will remove all their bookings and appointments.');">
                                         <input type="hidden" name="action" value="deleteUser">
                                         <input type="hidden" name="section" value="users">
-                                        <input type="hidden" name="userId" value="${user.userId}">
-                                        <button type="submit" class="action-btn delete-btn">Delete</button>
+                                        <input type="hidden" name="userId" value="${user.user_id}">
+                                        <button type="submit" class="action-btn delete-btn" title="Delete this user">Delete</button>
                                     </form>
                                 </c:if>
                             </td>
@@ -1192,28 +1408,32 @@
                             <input type="hidden" name="action" value="updateUser">
                             <input type="hidden" name="section" value="users">
                             <input type="hidden" id="editUserId" name="userId">
-                            <div class="form-group">
-                                <label for="editUserName">Name</label>
-                                <input type="text" id="editUserName" name="name" required>
+                            <div style="display: flex; gap: 1rem;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editUserName">Name</label>
+                                    <input type="text" id="editUserName" name="name" required>
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editUserEmail">Email</label>
+                                    <input type="email" id="editUserEmail" name="email" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="editUserEmail">Email</label>
-                                <input type="email" id="editUserEmail" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserPhone">Phone</label>
-                                <input type="text" id="editUserPhone" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserPassword">Password (leave blank to keep current)</label>
-                                <input type="password" id="editUserPassword" name="password">
-                            </div>
-                            <div class="form-group">
-                                <label for="editUserRole">Role</label>
-                                <select id="editUserRole" name="role" required>
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                </select>
+                            <div style="display: flex; gap: 1rem;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editUserPhone">Phone</label>
+                                    <input type="text" id="editUserPhone" name="phone">
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editUserPassword">Password (leave blank to keep current)</label>
+                                    <input type="password" id="editUserPassword" name="password">
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="editUserRole">Role</label>
+                                    <select id="editUserRole" name="role" required>
+                                        <option value="user">User</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
+                                </div>
                             </div>
                             <button type="submit" class="submit-btn">Update User</button>
                         </form>

@@ -348,6 +348,85 @@ public class AppointmentDAO {
         return detailedAppointments;
     }
 
+    // Get detailed appointments with pending appointments first
+    public List<Object[]> getDetailedAppointmentsWithPendingFirst() throws SQLException {
+        List<Object[]> detailedAppointments = new ArrayList<>();
+        String query = "SELECT a.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM appointment a " +
+                      "JOIN user u ON a.user_Id = u.user_id " +
+                      "JOIN service s ON a.service_Id = s.service_Id " +
+                      "ORDER BY CASE WHEN a.appointment_Status = 'Pending' THEN 0 ELSE 1 END, " +
+                      "a.appointment_Date DESC, a.appointment_Time DESC";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] appointmentDetails = new Object[10];
+                appointmentDetails[0] = rs.getInt("appointment_Id");
+                appointmentDetails[1] = rs.getString("appointment_Date");
+                appointmentDetails[2] = rs.getString("appointment_Time");
+                appointmentDetails[3] = rs.getString("appointment_Status");
+                appointmentDetails[4] = rs.getInt("user_Id");
+                appointmentDetails[5] = rs.getString("user_name");
+                appointmentDetails[6] = rs.getString("user_email");
+                appointmentDetails[7] = rs.getString("user_phone");
+                appointmentDetails[8] = rs.getString("service_Name");
+                appointmentDetails[9] = rs.getString("duration");
+
+                detailedAppointments.add(appointmentDetails);
+            }
+        }
+
+        // Print debug information
+        System.out.println("Total appointments retrieved: " + detailedAppointments.size());
+        for (Object[] appointment : detailedAppointments) {
+            System.out.println("Appointment ID: " + appointment[0] + ", Status: " + appointment[3]);
+        }
+
+        return detailedAppointments;
+    }
+
+    // Get only pending appointments
+    public List<Object[]> getPendingAppointments() throws SQLException {
+        List<Object[]> pendingAppointments = new ArrayList<>();
+        String query = "SELECT a.*, u.name as user_name, u.email as user_email, u.phone as user_phone, " +
+                      "s.service_Name, s.price, s.duration " +
+                      "FROM appointment a " +
+                      "JOIN user u ON a.user_Id = u.user_id " +
+                      "JOIN service s ON a.service_Id = s.service_Id " +
+                      "WHERE a.appointment_Status = 'Pending' " +
+                      "ORDER BY a.appointment_Date ASC, a.appointment_Time ASC";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Object[] appointmentDetails = new Object[10];
+                appointmentDetails[0] = rs.getInt("appointment_Id");
+                appointmentDetails[1] = rs.getString("appointment_Date");
+                appointmentDetails[2] = rs.getString("appointment_Time");
+                appointmentDetails[3] = rs.getString("appointment_Status");
+                appointmentDetails[4] = rs.getInt("user_Id");
+                appointmentDetails[5] = rs.getString("user_name");
+                appointmentDetails[6] = rs.getString("user_email");
+                appointmentDetails[7] = rs.getString("user_phone");
+                appointmentDetails[8] = rs.getString("service_Name");
+                appointmentDetails[9] = rs.getString("duration");
+
+                pendingAppointments.add(appointmentDetails);
+            }
+        }
+
+        // Print debug information
+        System.out.println("Total pending appointments: " + pendingAppointments.size());
+
+        return pendingAppointments;
+    }
+
     // Get detailed appointments for a specific user
     public List<Object[]> getDetailedAppointmentsByUserId(int userId) throws SQLException {
         List<Object[]> detailedAppointments = new ArrayList<>();

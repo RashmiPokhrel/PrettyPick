@@ -132,7 +132,7 @@
                     if ("admin".equals(userRole)) {
                         // Admin navigation links
                 %>
-                        <a href="admin-dashboard" class="${pageContext.request.servletPath == '/AdminDashboard.jsp' ? 'active' : ''}">Dashboard</a>
+                        <a href="admin-dashboard" class="${empty param.section ? 'active' : ''}">Dashboard</a>
                         <a href="admin-dashboard?section=appointments" class="${param.section == 'appointments' ? 'active' : ''}">Appointments</a>
                         <a href="admin-dashboard?section=bookings" class="${param.section == 'bookings' ? 'active' : ''}">Bookings</a>
                         <a href="admin-dashboard?section=services" class="${param.section == 'services' ? 'active' : ''}">Services</a>
