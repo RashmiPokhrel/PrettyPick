@@ -5,11 +5,6 @@ PrettyPick is a web-based salon appointment booking system that allows users to 
 ## Features
 
 ### User Features
-- User registration and login
-- Browse available salon services
-- Book appointments for services
-- View and manage bookings (reschedule, cancel)
-- Leave feedback for completed services
 
 ### Admin Features
 - Dashboard with booking statistics
